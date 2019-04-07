@@ -12,7 +12,10 @@ $stmt->execute();
 $count=$stmt->rowCount();
 
 if($count>0) {
-	echo "connecte";
+	//echo "connecte \n";
+	$pseudo = $_POST['pseudo_user'];
+	$res = $db_connexion->query("SELECT * FROM user WHERE pseudo_user = '$pseudo' ", PDO::FETCH_OBJ);
+	echo json_encode($res->fetchAll());
 	//$_SESSION['log']=1;
 } else {
 	echo "mauvais mdp ou pseudo";
